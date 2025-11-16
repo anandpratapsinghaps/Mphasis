@@ -1,0 +1,78 @@
+CREATE TABLE customers (
+  customerNumber int,
+  customerName  varchar(50) ,
+  contactLastName varchar(50),
+  contactFirstName varchar(50),
+  phone varchar(50) ,
+  addressLine1 varchar(50),
+  addressLine2 varchar(50),
+  city varchar(50),
+  state varchar(50),
+  postalCode varchar(15),
+  country varchar(50),
+  salesRepEmployeeNumber int,
+  creditLimit double
+) 
+
+insert into customers values(1706,"jhony","mike",
+"albert","9999999","Ammerpet","s r nagar","hyderabad",
+"Telangana","400067","India", 1805, 5000);
+
+
+select contactLastName,contactFirstName, phone from customers
+
+select count(*) from customers;
+
+select contactLastName,contactFirstName, phone from customers
+where country ="India"
+
+CREATE TABLE employees (
+  employeeNumber int,
+  lastname varchar(50),
+  firstName varchar(50),
+  extension varchar(10),
+   email varchar(100),
+  officeCode varchar(10),
+  reportsTo int,
+   jobTitle varchar(30)
+) 
+
+insert into employees values(1703,"Jones", "smith", "x19200",
+"sjones@gmail.com",4, 1101, "sales Rep")
+
+
+
+insert into employees values
+
+(1704,"Jones1", "smith1", "x19201",
+"sjones1@gmail.com",5, 1102, "Finace"),
+
+(1705,"Jones2", "smith2", "x19202",
+"sjones2@gmail.com",6, 1103, "HR")
+
+
+insert into employees values
+(1704,"Jones1", "smith1", "x19201",
+"sjones1@gmail.com",5, 1102, "Finace"),
+(1705,"Jones2", "smith2", "x19202",
+"sjones2@gmail.com",6, 1103, "HR")
+
+
+insert into employees_copy
+select * from employees
+
+
+SET SQL_SAFE_UPDATES = 0;
+
+update employees set extension='19320'
+where employeeNumber='1703'
+
+
+delete from employees  where 
+employeeNumber=1703
+
+
+select * from employees
+start transaction
+delete from employees where employeeNumber='1704'
+rollback

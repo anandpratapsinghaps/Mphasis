@@ -1,0 +1,177 @@
+27/1/2021
+
+========================================================
+Entity ConstrainTts- Sequence
+
+CREATE TABLE Animals(    
+id int NOT NULL AUTO_INCREMENT,     
+name CHAR(30) NOT NULL,     
+PRIMARY KEY (id));   
+
+ALTER TABLE animals AUTO_INCREMENT=1001;
+
+INSERT INTO Animals (name) VALUES     
+('Tiger'),('Dog'),('Penguin'),    
+ ('Camel'),('Cat'),('Ostrich');  
+ 
+ select * from animals;
+=====================================================
+
+OPEARTORS
+------------
+ARITHMETIC OPERATOR
+----------------------------------
+SELECT CREDITLIMIT+100 AS CL FROM customers
+SELECT CREDITLIMIT-100 AS CL FROM customers
+SELECT CREDITLIMIT*10 AS CL FROM customers
+SELECT CREDITLIMIT/10 AS CL FROM customers
+------------------------------------------------
+SQL Aliases
+------------
+SQL aliases are used to give a table, or a column in a table, a temporary name.
+Aliases are often used to make column names more readable.
+An alias only exists for the duration of the query.
+--------------------------------------------------
+COMPARISION OPERATOR
+-----------------------------------------------------
+SELECT * FROM Products3
+WHERE Price BETWEEN 10 AND 20;
+
+SELECT * FROM Customers
+WHERE Country IN ('Germany', 'France', 'UK');
+--------------------------------------------------------------------------
+lIKE
+
+LIKE Operator	Description
+WHERE CustomerName LIKE 'a%'	Finds any values that start with "a"
+WHERE CustomerName LIKE '%a'	Finds any values that end with "a"
+WHERE CustomerName LIKE '%or%'	Finds any values that have "or" in any position
+WHERE CustomerName LIKE '_r%'	Finds any values that have "r" in the second position
+
+WHERE ContactName LIKE 'a%o'	Finds any values that start with "a" and ends with "o"
+
+------------------------------------------------------------------
+SELECT * FROM Customers
+WHERE CustomerName LIKE 'J%';
+
+SELECT * FROM Customers
+WHERE CustomerName LIKE '%N';
+-----------------------------------------------------------
+insert into customers values(1706,"AJAY","K",
+"AJAY","9999999","Ammerpet","s r nagar","hyderabad",
+"Telangana","400067","UK", 1805, 5000);
+-----------------------------------------------------------
+
+SELECT * FROM Customers
+WHERE CustomerName LIKE '%AY%'
+
+SELECT * FROM Customers
+WHERE CustomerName LIKE '_H%';
+
+SELECT * FROM Customers
+WHERE CustomerName LIKE 'J%N';
+
+---------------------------------------------------------------
+SELECT *
+FROM Customers
+WHERE AddressLINE1 IS NULL;
+SELECT *
+
+FROM Customers
+WHERE AddresslINE1 IS NOT NULL;
+-----------------------------------------------------
+
+LOGICAL OPERATOR
+-------------------
+SELECT * FROM Customers
+WHERE Country='Germany' AND City='FRANKFURT';
+
+SELECT * FROM Customers
+WHERE City='FRANKFURT' OR City='München';
+
+SELECT * FROM Customers
+WHERE NOT Country='Germany';
+
+
+=======================================================
+
+FUNCTION
+===============================================================
+SELECT AVG(buyPrice) AS AveragePrice FROM Products;
+SELECT COUNT(Productcode) AS NumberOfProducts FROM Products;
+SELECT COUNT(*) AS NumberOfProducts FROM Products;
+SELECT MIN(buyPrice) AS SmallestPrice FROM Products;
+SELECT MAX(buyPrice) AS LargestPrice FROM Products;
+SELECT SUM(buyprice) AS TotalItemsOrdered FROM products;
+
+=======================================================================
+BUILT-IN
+
+SELECT CURRENT_DATE();
+SELECT CURRENT_TIME();
+SELECT CURRENT_TIMESTAMP();
+SELECT CURRENT_USER();
+SELECT SYSTEM_USER();
+
+
+
+================================================================
+STRING
+SELECT CONCAT('Hello', ' ', 'World') AS Result;
+SELECT CONVERT('123', SIGNED) AS Result;
+SELECT LOWER('Hello World') AS Result;
+SELECT SUBSTRING('Hello World', 1, 5) AS Result;
+SELECT REPLACE('abc', 'a', '1') AS Result;
+SELECT TRIM('   Hello World   ') AS Result;
+SELECT UPPER('Hello World') AS Result;
+==================================================================
+NUMERIC/MATHEMATIC
+
+SELECT ABS(-5) AS Result;
+SELECT CEIL(4.3) AS Result;
+SELECT FLOOR(4.9) AS Result;
+SELECT MOD(10, 3) AS Result;
+SELECT PI() AS Result;
+SELECT POWER(2, 3) AS Result;
+SELECT ROUND(4.6) AS Result;
+SELECT SQRT(9) AS Result;
+SELECT SQUARE(5) AS Result;
+SELECT TRUNCATE(7.345, 2) AS Result;
+
+==================================================================
+DATE & TIME 
+
+SELECT DATE('2023-11-25 14:30:00') AS Result;
+SELECT ADDDATE('2023-11-25', INTERVAL 7 DAY) AS Result;
+SELECT DATEDIFF('2023-12-02', '2023-11-25') AS Result;
+SELECT TIME('2023-11-25 14:30:00') AS Result;
+SELECT EXTRACT(YEAR FROM '2023-11-25') AS Result;
+
+----------------------------------------------
+SELECT CURRENT_DATE() AS Result;
+SELECT CURRENT_TIME() AS Result;
+SELECT CURRENT_TIMESTAMP() AS Result;
+SELECT '2023-11-25' + INTERVAL 7 DAY AS Result;
+SELECT '2023-11-25' - INTERVAL 3 MONTH AS Result;
+SELECT DATEDIFF('2023-12-02', '2023-11-25') AS Result;
+===============================================================
+
+MISCELLANEOUS
+SELECT COALESCE(NULL, NULL, NULL, 'genpact.com', NULL, 'Example.com');
+SELECT NULLIF(25, 25);
+======================================================================
+
+SELECT 
+  productName,
+  CASE
+    WHEN quantityinstock > 10 THEN 'In Stock'
+    WHEN quantityinstock > 0 THEN 'Low Stock'
+    ELSE 'Out of Stock'
+  END AS StockStatus
+FROM products;
+
+SELECT IF(500<1000, "YES", "NO");
+
+SELECT AVG(ifnull(CREDITLIMIT,0)) FROM
+CUSTOMERS;
+============================================================================

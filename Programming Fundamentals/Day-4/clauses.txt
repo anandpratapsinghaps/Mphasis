@@ -1,0 +1,42 @@
+28/01/2021
+
+select * from customers;
+SELECT country, count(customername) 
+FROM customers 
+GROUP BY country;
+
+SELECT country, count(customernumber),count(customername)
+FROM customers 
+GROUP BY country;
+
+SELECT COUNT(*) FROM CUSTOMERS;
+
+SELECT country, count(customernumber) 
+FROM customers 
+WHERE state != NULL  
+GROUP BY country;
+
+
+SELECT country, state, COUNT(customername) 
+FROM customers 
+GROUP BY country, state
+
+SELECT CUSTOMERNAME,COUNTRY 
+FROM CUSTOMERS 
+ORDER BY Country ASC;
+
+SELECT CUSTOMERNAME,COUNTRY 
+FROM CUSTOMERS 
+ORDER BY 1 ASC;
+
+SELECT CUSTOMERNAME, COUNTRY 
+FROM CUSTOMERS 
+ORDER BY CustomerName DESC
+
+SELECT CUSTOMERNAME, COUNTRY 
+FROM CUSTOMERS;
+
+SELECT CUSTOMERNAME, COUNTRY 
+FROM CUSTOMERS 
+GROUP BY  COUNTRY;
+

@@ -1,0 +1,151 @@
+CREATE TABLE Offices (
+  officeCode VARCHAR(10) PRIMARY KEY,
+  city VARCHAR(50) NOT NULL,
+  phone VARCHAR(50) NOT NULL,
+  addressLine1 VARCHAR(50) NOT NULL,
+  addressLine2 VARCHAR(50) NULL,
+  state VARCHAR(50) NULL,
+  country VARCHAR(50) NOT NULL,
+  postalCode VARCHAR(15) NOT NULL,
+  territory VARCHAR(10) NOT NULL
+);
+
+CREATE TABLE Employees (
+  employeeNumber INTEGER PRIMARY KEY,
+  lastName VARCHAR(50),
+  firstName VARCHAR(50),
+  extension VARCHAR(10),
+  email VARCHAR(100),
+  officeCode VARCHAR(10) REFERENCES Offices(officeCode),
+  reportsTo INTEGER REFERENCES Employees(employeeNumber),
+  jobTitle VARCHAR(50)
+);
+
+
+INSERT INTO Offices VALUES
+('1', 'New York', '123-456-7890', '123 Main St', NULL, 'NY', 'USA', '10001', 'NA'),
+('2', 'Los Angeles', '987-654-3210', '456 Oak St', NULL, 'CA', 'USA', '90001', 'NA');
+
+
+INSERT INTO Employees VALUES
+(1, 'Smith', 'John', 'Ext1', 'john.smith@example.com', '1', NULL, 'Manager'),
+(2, 'Doe', 'Jane', 'Ext2', 'jane.doe@example.com', '1', 1, 'Assistant Manager'),
+(3, 'Johnson', 'Bob', 'Ext3', 'bob.johnson@example.com', '2', 1, 'Salesperson'),
+(4, 'Brown', 'Alice', 'Ext4', 'alice.brown@example.com', '2', 1, 'Salesperson');
+------------------------------------------------------------------
+cross join
+
+SELECT o.city, o.country, e.jobtitle 
+FROM offices o cross JOIN employees e 
+
+
+=============================================================
+Theta style
+-----------------------------
+SELECT * 
+FROM Offices o
+INNER JOIN Employees e ON o.officeCode = e.officeCode
+WHERE o.country LIKE '%USA%';
+
+
+
+SELECT o.city, o.country, e.jobtitle 
+FROM offices o INNER JOIN employees e 
+USING (officecode) 
+WHERE o.country LIKE '%USA%';
+---------------------------------------------------------
+Inner join
+--------------------------------------------
+SELECT o.city, o.country, e.jobtitle 
+FROM offices o Inner JOIN employees e 
+ON o.officecode=e.officecode; 
+
+
+SELECT o.city, o.country, e.jobtitle 
+FROM offices o inner JOIN employees e 
+ON o.officecode=e.officecode; 
+-----------------------------------------------------
+EQUI Join
+
+SELECT o.city, o.country, e.jobtitle 
+FROM offices o INNER JOIN employees e 
+ON o.officecode=e.officecode
+---------------------------------------------------------
+Natural Join
+
+CREATE TABLE Customers (
+  customerID INT PRIMARY KEY,
+  customerName VARCHAR(50),
+  contactName VARCHAR(50),
+  country VARCHAR(50)
+);
+
+
+INSERT INTO Customers VALUES
+(1, 'Customer1', 'John Doe', 'USA'),
+(2, 'Customer2', 'Jane Smith', 'Canada'),
+(3, 'Customer3', 'Bob Johnson', 'UK');
+
+
+CREATE TABLE Orders (
+  orderID INT PRIMARY KEY,
+  customerID INT,
+  orderDate DATE,
+  totalAmount DECIMAL(10, 2),
+  FOREIGN KEY (customerID) REFERENCES Customers(customerID)
+);
+
+
+INSERT INTO Orders VALUES
+(101, 1, '2023-01-01', 100.00),
+(102, 2, '2023-02-01', 150.50),
+(103, 1, '2023-03-01', 200.75);
+
+
+SELECT *
+FROM Customers
+NATURAL JOIN Orders;
+
+-------------------------------------------------------
+Left outer Join
+
+SELECT c.city, p.checknumber, p. amount 
+FROM customers c LEFT OUTER JOIN payments p  
+ON c.customernumber=p.customernumber; 
+
+SELECT o.city, o.country, e.jobtitle 
+FROM offices o left JOIN employees e 
+ON o.officecode=e.officecode; 
+
+The left table is the table that is in the FROM clause, or left of the join condition, the join clause here. And a right table is on the right side of the join clause. When we speak of a left outer join, what we're saying is, take all the rows from the left table, and join them to rows on the right table.
+--------------------------------------------------------
+
+Right Outer Join
+----------------------------------------------------------
+SELECT c.city, p.checknumber, p. amount 
+FROM customers c RIGHT OUTER JOIN payments p  
+ON c.customernumber=p.customernumber; 
+
+
+SELECT o.city, o.country, e.jobtitle 
+FROM offices o right JOIN employees e 
+ON o.officecode=e.officecode; 
+
+--------------------------------------------------------------
+
+Full Outer Join
+----------------------------------
+SELECT c.city, p.checknumber, p. amount 
+FROM customers c FULL OUTER JOIN payments p  
+ON c.customernumber=p.customernumber; 
+--------------------------------------------------------
+
+Self Join
+---------------------------------------------------------------------
+SELECT a.lastname, a.reportsto, b.firstname, b.reportsto, b.jobtitle 
+FROM employees a INNER JOIN employees b 
+ON a.jobtitle =b.jobtitle;
+
+
+
+
