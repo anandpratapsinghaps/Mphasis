@@ -1,0 +1,10 @@
+INSERT INTO Offices VALUES
+('1', 'New York', '123-456-7890', '123 Main St', NULL, 'NY', 'USA', '10001', 'NA'),
+('2', 'Los Angeles', '987-654-3210', '456 Oak St', NULL, 'CA', 'USA', '90001', 'NA');
+
+
+INSERT INTO Employees VALUES
+(1, 'Smith', 'John', 'Ext1', 'john.smith@example.com', '1', NULL, 'Manager'),
+(2, 'Doe', 'Jane', 'Ext2', 'jane.doe@example.com', '1', 1, 'Assistant Manager'),
+(3, 'Johnson', 'Bob', 'Ext3', 'bob.johnson@example.com', '2', 1, 'Salesperson'),
+(4, 'Brown', 'Alice', 'Ext4', 'alice.brown@example.com', '2', 1, 'Salesperson');
